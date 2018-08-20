@@ -1,0 +1,25 @@
+.button {
+  text-transform: uppercase;
+  padding: 10px 50px;
+  font-size: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 2px solid #6081a3;
+  color: #819fbe;
+  outline: none;
+  min-width: 180px;
+  text-decoration:none;
+  cursor:pointer;
+  display: inline-block;
+
+  &:active {
+    position:relative;
+    top:1px;
+  }
+
+  &.primary {
+    color: #fff;
+    border: 2px solid #56afd9;
+    background:linear-gradient(to bottom, #6ba1c1 5%, #3859b2 100%);
+  }
+}
