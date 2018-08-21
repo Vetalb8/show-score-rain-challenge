@@ -3,11 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import cx from 'classnames'
 
-import { toggleField } from '../../modules/game'
+import { toggleField, resetFloatFields } from '../../modules/game'
 
 import './Field.scss'
 
-@connect(null, { toggleField })
+@connect((state) => ({
+  isGameRunning: state.game.isGameRunning,
+}), { toggleField, resetFloatFields })
 export default class Field extends Component {
 
   static propTypes = {
@@ -15,11 +17,17 @@ export default class Field extends Component {
     coordinates: PropTypes.array,
     isActive: PropTypes.bool,
     isFloating: PropTypes.bool,
+    isGameRunning: PropTypes.bool,
     setActiveField: PropTypes.func,
   }
 
   toggleField = () => {
-    const { id, toggleField } = this.props
+    const { id, toggleField, isGameRunning, resetFloatFields } = this.props
+
+    if (isGameRunning) {
+      resetFloatFields()
+      return
+    }
 
     toggleField(id)
   }

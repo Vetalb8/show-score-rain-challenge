@@ -9,6 +9,8 @@ export const toggleField = createAction(`${name}/TOGGLE_FIELD`)
 
 export const setFloatFields = createAction(`${name}/SET_FLOAT_FIELDS`)
 
+export const resetFloatFields = createAction(`${name}/RESET_FLOAT_FIELDS`)
+
 export const createFields = createAction(`${name}/CREATE_FIELDS`)
 
 
@@ -17,6 +19,7 @@ const initialState = {
   rows: 6,
   cols: 12,
   fields: [],
+  isGameRunning: false,
 }
 
 const game = createReducer({
@@ -65,8 +68,27 @@ const game = createReducer({
     }
   },
   [setFloatFields]: (state) => {
+    const currentFieldsToUpdate = [...state.fields]
+
+    currentFieldsToUpdate.map((field, index) => {
+      const nextFiled = currentFieldsToUpdate[index + 1]
+      const prevField = currentFieldsToUpdate[index - 1]
+
+      field.isFloating = (
+        !field.isActive
+        && nextFiled
+        && nextFiled.isActive
+        && prevField
+        && prevField.isActive
+      )
+
+      return field
+    })
+
     return {
       ...state,
+      isGameRunning: true,
+      fields: [...currentFieldsToUpdate]
     }
   },
   [createFields]: (state) => {
@@ -78,6 +100,7 @@ const game = createReducer({
           id: `${row}-${col}`,
           coordinates: [row, col],
           isActive: false,
+          isFloating: false,
         })
       }
     }
@@ -85,6 +108,19 @@ const game = createReducer({
     return {
       ...state,
       fields,
+    }
+  },
+  [resetFloatFields]: (state) => {
+    const currentFieldsToUpdate = [...state.fields]
+    const fields = currentFieldsToUpdate.map((field) => ({
+      ...field,
+      isFloating: false,
+    }))
+
+    return {
+      ...state,
+      fields,
+      isGameRunning: false,
     }
   },
 }, initialState)
