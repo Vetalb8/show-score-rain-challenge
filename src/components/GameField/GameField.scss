@@ -1,9 +1,10 @@
 .gameField {
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  align-items: center;
+  margin: 40px auto 0;
   background-color: #fff;
-  width: 1112px;
+  width: 1096px;
 }
 
 .fields {
@@ -13,5 +14,6 @@
 .controls {
   display: flex;
   justify-content: space-between;
-  padding: 10px 60px 20px;
+  width: 100%;
+  padding: 10px 200px 20px;
 }
