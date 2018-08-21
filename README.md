@@ -1,3 +1,8 @@
+## Start project ##
+
+npm install
+npm start
+
 ## Front-End Development Assessment for Show-Score ##
 
 This assessment is designed to help us better understand your skills.  There is no right or wrong answer, as there are
