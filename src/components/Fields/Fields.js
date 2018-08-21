@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { createFields, setFields } from '../../modules/game'
+import { createFields } from '../../modules/game'
 
 import './Fields.scss'
 
@@ -13,7 +13,7 @@ import Field from '../Field/Field'
   cols: state.game.cols,
   rows: state.game.rows,
   fields: state.game.fields,
-}), { setFields, createFields })
+}), { createFields })
 export default class Fields extends Component {
 
   static propTypes = {
@@ -25,7 +25,7 @@ export default class Fields extends Component {
         isFloating: PropTypes.bool,
       })
     ),
-    setFields: PropTypes.func,
+    createFields: PropTypes.func,
   }
 
   componentWillMount() {

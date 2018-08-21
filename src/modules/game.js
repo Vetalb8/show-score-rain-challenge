@@ -1,9 +1,7 @@
 import { createReducer, createAction } from 'redux-act'
 
 // Actions
-const name = '@@game'
-
-export const setFields = createAction(`${name}/SET_FIELDS`)
+export const name = '@@game'
 
 export const toggleField = createAction(`${name}/TOGGLE_FIELD`)
 
@@ -23,7 +21,6 @@ const initialState = {
 }
 
 const game = createReducer({
-  [setFields]: (state, fields) => ({ ...state, fields }),
   [toggleField]: (state, id) => {
     const lastRow = state.rows - 1
     const currentFieldsToUpdate = [...state.fields]

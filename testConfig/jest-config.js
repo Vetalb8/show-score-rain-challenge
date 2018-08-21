@@ -1,4 +1,3 @@
-const babelJest = require('babel-jest');
 const path = require('path');
 
 const config = {
