@@ -1,0 +1,12 @@
+.field {
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  border: 1px solid #b4b8b9;
+  background-color: #fff;
+  margin: -1px;
+
+  &.active {
+    background:linear-gradient(to bottom, #545454 5%, #121212 100%);
+  }
+}
