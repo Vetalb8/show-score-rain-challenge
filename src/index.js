@@ -7,6 +7,8 @@ import { createLogger } from 'redux-logger'
 import { loggers } from 'redux-act'
 import reducers from './reducers'
 
+import main from './styles/main.scss'
+
 import App from './components/App/App'
 
 
