@@ -47,7 +47,7 @@ const game = createReducer({
           currentFieldToUpdate.coordinates[0] !== lastRow
           && bottomField
           && bottomField.isActive
-          && (upField && !upField.isActive)
+          && ((upField && !upField.isActive) || !upField)
         )
       )
     }
@@ -78,8 +78,10 @@ const game = createReducer({
         !field.isActive
         && nextFiled
         && nextFiled.isActive
+        && !nextFiled.isSideCol
         && prevField
         && prevField.isActive
+        && !prevField.isSideCol
       )
 
       return field
@@ -101,6 +103,7 @@ const game = createReducer({
           coordinates: [row, col],
           isActive: false,
           isFloating: false,
+          isSideCol: col === 0 || col === state.cols - 1
         })
       }
     }
