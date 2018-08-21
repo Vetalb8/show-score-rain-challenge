@@ -1,5 +1,17 @@
 .gameField {
+  display: flex;
+  flex-direction: column;
   margin-top: 40px;
   background-color: #fff;
-  height: 514px;
+  width: 1112px;
+}
+
+.fields {
+  flex-grow: 1;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 60px 20px;
 }
