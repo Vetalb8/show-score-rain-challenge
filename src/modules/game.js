@@ -69,6 +69,8 @@ const game = createReducer({
   },
   [setFloatFields]: (state) => {
     const currentFieldsToUpdate = [...state.fields]
+    const firstCol = 0
+    const lastCol = state.cols - 1
 
     currentFieldsToUpdate.map((field, index) => {
       const nextFiled = currentFieldsToUpdate[index + 1]
@@ -76,12 +78,12 @@ const game = createReducer({
 
       field.isFloating = (
         !field.isActive
+        && field.coordinates[1] !== firstCol
+        && field.coordinates[1] !== lastCol
         && nextFiled
         && nextFiled.isActive
-        && !nextFiled.isSideCol
         && prevField
         && prevField.isActive
-        && !prevField.isSideCol
       )
 
       return field
@@ -103,7 +105,6 @@ const game = createReducer({
           coordinates: [row, col],
           isActive: false,
           isFloating: false,
-          isSideCol: col === 0 || col === state.cols - 1
         })
       }
     }
