@@ -28,16 +28,26 @@ const game = createReducer({
     const indexToUpdate = currentFieldsToUpdate.findIndex((field) => field.id === id)
     const currentFieldToUpdate = currentFieldsToUpdate[indexToUpdate]
 
-    const nextBottomField = currentFieldsToUpdate[indexToUpdate + state.cols]
+    const bottomField = currentFieldsToUpdate[indexToUpdate + state.cols]
+    const upField = currentFieldsToUpdate[indexToUpdate - state.cols]
 
 
-    const isActiveCurrentField = (
-      !currentFieldToUpdate.isActive
-      && (
+    let isActiveCurrentField = false
+
+    if (currentFieldToUpdate.isActive) {
+      isActiveCurrentField = upField && upField.isActive
+    }
+    else {
+      isActiveCurrentField = (
         currentFieldToUpdate.coordinates[0] === lastRow
-        || (currentFieldToUpdate.coordinates[0] !== lastRow && nextBottomField.isActive)
+        || (
+          currentFieldToUpdate.coordinates[0] !== lastRow
+          && bottomField
+          && bottomField.isActive
+          && (upField && !upField.isActive)
+        )
       )
-    )
+    }
 
     const updatedField = {
       ...currentFieldToUpdate,
