@@ -1,7 +1,7 @@
 ## Start project ##
 
-npm install
-npm start
+`npm install`
+`npm start`
 
 ## Front-End Development Assessment for Show-Score ##
 
