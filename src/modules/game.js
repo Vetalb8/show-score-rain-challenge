@@ -9,6 +9,9 @@ export const toggleField = createAction(`${name}/TOGGLE_FIELD`)
 
 export const setFloatFields = createAction(`${name}/SET_FLOAT_FIELDS`)
 
+export const createFields = createAction(`${name}/CREATE_FIELDS`)
+
+
 // Reducers
 const initialState = {
   rows: 6,
@@ -55,7 +58,25 @@ const game = createReducer({
     return {
       ...state,
     }
-  }
+  },
+  [createFields]: (state) => {
+    const fields = []
+
+    for (let row = 0; row < state.rows; row++) {
+      for (let col = 0; col < state.cols; col++) {
+        fields.push({
+          id: `${row}-${col}`,
+          coordinates: [row, col],
+          isActive: false,
+        })
+      }
+    }
+
+    return {
+      ...state,
+      fields,
+    }
+  },
 }, initialState)
 
 export default game

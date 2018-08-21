@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { setFields } from '../../modules/game'
+import { createFields, setFields } from '../../modules/game'
 
 import './Fields.scss'
 
@@ -13,7 +13,7 @@ import Field from '../Field/Field'
   cols: state.game.cols,
   rows: state.game.rows,
   fields: state.game.fields,
-}), { setFields })
+}), { setFields, createFields })
 export default class Fields extends Component {
 
   static propTypes = {
@@ -29,26 +29,9 @@ export default class Fields extends Component {
   }
 
   componentWillMount() {
-    this.createFields()
+    const { createFields } = this.props
+    createFields()
   }
-
-  createFields = () => {
-    const { cols, rows, setFields } = this.props
-    const fields = []
-
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        fields.push({
-          id: `${row}-${col}`,
-          coordinates: [row, col],
-          isActive: false,
-        })
-      }
-    }
-
-    setFields(fields)
-  }
-
 
   render() {
     const { fields } = this.props
