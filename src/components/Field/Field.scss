@@ -9,4 +9,8 @@
   &.active {
     background:linear-gradient(to bottom, #545454 5%, #121212 100%);
   }
+
+  &.floating {
+    background:linear-gradient(to bottom, #65cae7 5%, #2ba3d4 100%);
+  }
 }

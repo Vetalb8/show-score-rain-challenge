@@ -22,6 +22,7 @@ export default class Fields extends Component {
         id: PropTypes.string,
         coordinates: PropTypes.array,
         isActive: PropTypes.bool,
+        isFloating: PropTypes.bool,
       })
     ),
     setFields: PropTypes.func,
@@ -35,11 +36,11 @@ export default class Fields extends Component {
     const { cols, rows, setFields } = this.props
     const fields = []
 
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows; row++) {
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
         fields.push({
-          id: `${col}-${row}`,
-          coordinates: [col, row],
+          id: `${row}-${col}`,
+          coordinates: [row, col],
           isActive: false,
         })
       }

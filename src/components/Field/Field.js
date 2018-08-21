@@ -3,35 +3,37 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import cx from 'classnames'
 
-import { setActiveField } from '../../modules/game'
+import { toggleField } from '../../modules/game'
 
 import './Field.scss'
 
-@connect(null, { setActiveField })
+@connect(null, { toggleField })
 export default class Field extends Component {
 
   static propTypes = {
     id: PropTypes.string,
     coordinates: PropTypes.array,
     isActive: PropTypes.bool,
+    isFloating: PropTypes.bool,
     setActiveField: PropTypes.func,
   }
 
-  setActive = () => {
-    const { id, setActiveField } = this.props
+  toggleField = () => {
+    const { id, toggleField } = this.props
 
-    setActiveField(id)
+    toggleField(id)
   }
 
   render() {
-    const { id, isActive } = this.props
+    const { id, isActive, isFloating } = this.props
 
     const fieldStyleName = cx('field', {
-      'active': isActive
+      'active': isActive,
+      'floating': isFloating,
     })
 
     return (
-      <div className={fieldStyleName} onClick={this.setActive} data-testId={id} />
+      <div className={fieldStyleName} onClick={this.toggleField} data-test={id} />
     )
   }
 }
